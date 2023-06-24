@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Amplify } from "aws-amplify";
 //for encapuate
 import { withAuthenticator } from "aws-amplify-react-native";
-import awsconfig from "./src/aws-exports";
+import config from "./src/aws-exports";
 
 //new version:
 // import { Amplify } from "aws-amplify";
@@ -16,7 +16,12 @@ import awsconfig from "./src/aws-exports";
 
 // import awsExports from "./aws-exports";
 
-Amplify.configure(awsconfig);
+Amplify.configure({
+  ...config,
+  Analytics: {
+    disabled: true,
+  },
+}); //desturcher all config, bc we want to overwite the Analytics
 
 function App() {
   return (
